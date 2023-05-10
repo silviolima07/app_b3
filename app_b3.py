@@ -44,34 +44,41 @@ def get_ticker():
  
 def predict(ticker):
     yf = yfin.Ticker(ticker)
+    #st.write(yf.info['longName'])
     symbol =  yf.info['symbol']
     description = yf.info['longName']
-    #print("Stock: ", yf.info['symbol'])
-    #print("Name: " , yf.info['longName'])
+    #print("predict->Stock: ", yf.info['symbol'])
+    #print("predict->Name: " , yf.info['longName'])
     hist = yf.history(period="max")
+    
     hist = hist[['Close']]
     hist.reset_index(inplace=True)
     hist = hist.rename({'Date': 'ds', 'Close': 'y'}, axis='columns')
     hist['ds'] = hist['ds'].dt.tz_localize(None)
+    #st.write(hist)
     m = Prophet(daily_seasonality=True)
     m.fit(hist)
     future = m.make_future_dataframe(periods=365)
     forecast = m.predict(future)
+    first_date = str(hist.ds.min()).split(' ')[0]
+    last_date =  str(hist.ds.max()).split(' ')[0]
+    st.write("Period collected : "+first_date, " / "+last_date)
+    #st.write("Last  date: "+last_date)
     return (symbol, description, forecast,m)  
  
 def save_plot(symbol, description,forecast,m):
-    print(symbol)
-    print("Predictions\n\ty(future value)\tTrend\tWeakly\tYearly\tDaily")
+    #print(symbol)
+    #print("Predictions\n\ty(future value)\tTrend\tWeakly\tYearly\tDaily")
     fig1 = m.plot(forecast)
     fig1.savefig('prophetplot1.png')
     st.markdown('### '+symbol+" -> "+description)
-    st.markdown("### Prediction values")
-    st.image('/content/prophetplot1.png')
+    st.markdown("### Prediction values for next 365 days")
+    st.image('prophetplot1.png')
     #
     st.markdown("### Components: Trends Weekly Yearly Daily")
     fig2 =  m.plot_components(forecast)
     fig2.savefig("prophetplot2.png")
-    st.image('/content/prophetplot2.png')
+    st.image('prophetplot2.png')
   
 def main():
      
@@ -84,34 +91,37 @@ def main():
                """
     st.markdown(html_page, unsafe_allow_html=True)
  
-    image = Image.open("/content/drive/MyDrive/Logo_B3 .png")
+    image = Image.open("Logo_B3 .png")
     st.sidebar.image(image,caption="", use_column_width=True)
     
     activities = ["Predictions","About"]
     choice = st.sidebar.radio("Home",activities)
     
     if choice == 'Predictions':
-         
+        #predict('TAEE4.SA') 
         st.markdown("### Choose a ticker")
-#       option = st.selectbox('',get_ticker())
-#       #st.write('You selected:', option)
-        if st.button("Predict next 365 days"):
-           try:
-               with st.spinner('Wait for it...'):
+        option = st.selectbox('',get_ticker())
+        #st.write('You selected:', option)
+        if st.button("Predicting next 365 DAYS"):
+            try:
+               #symbol, description,forecast,model = predict(option)
+               #save_plot(symbol, description,forecast,model)
+               with st.spinner('Wait for it...we are collecting data'):
                    symbol, description,forecast,model = predict(option)
                    save_plot(symbol, description,forecast,model)
-           except:
+            except:
+               st.write("Ticker: "+option)
                st.error('Ops...sorry this ticker likely was renamed.', icon="🚨")
  
     if choice == 'About':
-        st.subheader("I hope you enjoy it and use to learn something")
-        st.markdown("### Referências")
-        st.markdown("#### - https://analyzingalpha.com/yfinance-python")
-        st.markdown("#### - https://analisemacro.com.br/mercado-financeiro/datareader-e-analises-com-yahoo-finance/")
-        st.markdown("#### - https://levelup.gitconnected.com/how-to-plot-stock-prices-using-python-87ba684d126c")
-        st.markdown("#### - https://www.youtube.com/watch?v=ZxLJjUcP2LI")
-        st.markdown("#### - https://www.section.io/engineering-education/how-to-plot-a-candlestick-chart-in-python-using-the-matplotlib-finance-api/")
-        st.markdown("#### - https://hareeshpb.medium.com/stock-prediction-using-prophet-python-525710e1ab0c")
+        st.subheader("I hope you enjoy it")
+        st.markdown("### References")
+        st.markdown("##### - https://analyzingalpha.com/yfinance-python")
+        st.markdown("##### - https://analisemacro.com.br/mercado-financeiro/datareader-e-analises-com-yahoo-finance/")
+        st.markdown("##### - https://levelup.gitconnected.com/how-to-plot-stock-prices-using-python-87ba684d126c")
+        st.markdown("##### - https://www.youtube.com/watch?v=ZxLJjUcP2LI")
+        st.markdown("##### - https://www.section.io/engineering-education/how-to-plot-a-candlestick-chart-in-python-using-the-matplotlib-finance-api/")
+        st.markdown("##### - https://hareeshpb.medium.com/stock-prediction-using-prophet-python-525710e1ab0c")
         st.subheader("by Silvio Lima")
          
         if st.button("Linkedin"):
