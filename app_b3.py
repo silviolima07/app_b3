@@ -88,12 +88,12 @@ def save_plot(symbol, description,forecast,m):
 def main():
  
 """ 
-    """B3 App """
-     
-    html_page = """
-     <div style="background-color:tomato;padding=50px">
-         <p style='text-align:center;font-size:50px;font-weight:bold'>Stocks & Prophet</p>
-     </div>
+#    """B3 App """
+#     
+#    html_page = """
+#     <div style="background-color:tomato;padding=50px">
+#         <p style='text-align:center;font-size:50px;font-weight:bold'>Stocks & Prophet</p>
+#     </div>
                """
     st.markdown(html_page, unsafe_allow_html=True)
  
