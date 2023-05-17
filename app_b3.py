@@ -31,7 +31,7 @@ import warnings
 warnings.filterwarnings("ignore")
 from datetime import date
 
-import prophet
+import prophet.Prophet
 #from prophet import Prophet
 
 from bokeh.models.widgets import Div
