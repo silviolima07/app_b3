@@ -120,7 +120,7 @@ def main():
                    save_plot(symbol, description,forecast,model)
             except:
                st.write("Ticker: "+option)
-               st.error('Ops...sorry this ticker likely was renamed.', icon="🚨")
+               st.error('SORRY, THIS TICKER LIKELY WAS RENAMED.', icon="🚨")
  
     if choice == 'About':
         st.subheader("I hope you enjoy it.")
