@@ -75,7 +75,7 @@ def save_plot(symbol, description,forecast,m):
     st.markdown("### Prediction values for next 365 days")
     st.image('prophetplot1.png')
     #
-    st.markdown("### Components: Trends Weekly Yearly Daily")
+    st.markdown("### Components: Trend Weekly Yearly Daily")
     fig2 =  m.plot_components(forecast)
     fig2.savefig("prophetplot2.png")
     st.image('prophetplot2.png')
@@ -114,8 +114,8 @@ def main():
                st.error('Ops...sorry this ticker likely was renamed.', icon="🚨")
  
     if choice == 'About':
-        st.subheader("I hope you enjoy it")
-        st.markdown("### References")
+        st.subheader("I hope you enjoy it.")
+        st.markdown("### References:")
         st.markdown("##### - https://analyzingalpha.com/yfinance-python")
         st.markdown("##### - https://analisemacro.com.br/mercado-financeiro/datareader-e-analises-com-yahoo-finance/")
         st.markdown("##### - https://levelup.gitconnected.com/how-to-plot-stock-prices-using-python-87ba684d126c")
