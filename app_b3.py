@@ -38,7 +38,7 @@ from bokeh.models.widgets import Div
 
 #
 
-""" 
+
 def get_ticker():
     br = inv.stocks.get_stocks(country='brazil')
     lista_tickers = []
@@ -86,7 +86,7 @@ def save_plot(symbol, description,forecast,m):
     fig2.savefig("prophetplot2.png")
     st.image('prophetplot2.png')
 
-"""
+
   
 def main():
  
@@ -105,7 +105,7 @@ def main():
     
     activities = ["Predictions","About"]
     choice = st.sidebar.radio("Home",activities)
-    """
+    
     if choice == 'Predictions':
         #predict('TAEE4.SA') 
         st.markdown("### Choose a ticker")
@@ -139,7 +139,7 @@ def main():
              div = Div(text=html)
              st.bokeh_chart(div)
  
- """
+ 
  
 if __name__ == '__main__':
     main()
