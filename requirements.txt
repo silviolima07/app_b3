@@ -5,5 +5,5 @@ pyngrok==6.0.0
 seaborn
 streamlit
 yfinance==0.2.18
-prophet==1.1.2
+prophet==1.1
 bokeh==2.4.3
