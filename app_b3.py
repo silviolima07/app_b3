@@ -26,13 +26,15 @@ import yfinance as yfin
 yfin.pdr_override()
 import numpy as np
 from matplotlib import pyplot as plt
-import seaborn as sns
+
 import warnings
 warnings.filterwarnings("ignore")
 from datetime import date
-from prophet import Prophet
+
+#from prophet import Prophet
+
 from bokeh.models.widgets import Div
-import time
+
 #
 
 """ 
