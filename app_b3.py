@@ -33,7 +33,9 @@ from datetime import date
 from prophet import Prophet
 from bokeh.models.widgets import Div
 import time
-# 
+#
+
+""" 
 def get_ticker():
     br = inv.stocks.get_stocks(country='brazil')
     lista_tickers = []
@@ -80,9 +82,12 @@ def save_plot(symbol, description,forecast,m):
     fig2 =  m.plot_components(forecast)
     fig2.savefig("prophetplot2.png")
     st.image('prophetplot2.png')
+
+"""
   
 def main():
-     
+ 
+""" 
     """B3 App """
      
     html_page = """
