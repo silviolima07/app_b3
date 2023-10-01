@@ -89,7 +89,7 @@ def save_plot(symbol, description,forecast,m):
     st.image('prophetplot2.png')
 
 def predict2(ticker):
-    st.write('Funcao  predict')
+    st.write('Funcao  predict2')
     yf = yfin.Ticker(ticker)
     st.write(yf.info)
     st.write(yf.info['longName'])
