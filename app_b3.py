@@ -109,7 +109,7 @@ def main():
     if choice == 'Predictions':
         #predict('TAEE4.SA') 
         st.markdown("### Choose a ticker")
-        option = st.selectbox('',get_ticker())
+        option = st.selectbox('Ticker',get_ticker(), label_visibility = 'hidden')
         #st.write('You selected:', option)
         if st.button("Predicting next 365 DAYS"):
             try:
