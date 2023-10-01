@@ -89,9 +89,9 @@ def save_plot(symbol, description,forecast,m):
     st.image('prophetplot2.png')
 
 def predict2(ticker):
-    #st.write('Funcao  predict')
+    st.write('Funcao  predict')
     yf = yfin.Ticker(ticker)
-    #st.write(yf.info['longName'])
+    st.write(yf.info['longName'])
     symbol =  yf.info['symbol']
     description = yf.info['longName']
     #print("predict->Stock: ", symbol)
@@ -102,12 +102,12 @@ def predict2(ticker):
     hist.reset_index(inplace=True)
     hist = hist.rename({'Date': 'ds', 'Close': 'y'}, axis='columns')
     hist['ds'] = hist['ds'].dt.tz_localize(None)
-    #st.write(hist)
+    st.write(hist)
     #m = Prophet(daily_seasonality=True)
     m = Prophet()
     m.fit(hist)
-    #st.write("Model Prophet")
-    #st.write(m)
+    st.write("Model Prophet")
+    st.write(m)
     
     future = m.make_future_dataframe(periods=365)
     
