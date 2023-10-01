@@ -48,6 +48,7 @@ def get_ticker():
     return lista_tickers
  
 def predict(ticker):
+    ticker='rail3'
     yf = yfin.Ticker(ticker)
     st.write(yf.info['longName'])
     symbol =  yf.info['symbol']
