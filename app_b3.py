@@ -90,6 +90,7 @@ def save_plot(symbol, description,forecast,m):
 
 def predict2(ticker):
     st.write('Funcao  predict2')
+    """
     yf = yfin.Ticker(ticker)
     st.write(yf.info)
     #st.write(yf.info['longName'])
@@ -98,7 +99,7 @@ def predict2(ticker):
     #print("predict->Stock: ", symbol)
     #print("predict->Name: " , description)
     hist = yf.history(period="max")
-    """
+    
     hist = hist[['Close']]
     hist.reset_index(inplace=True)
     hist = hist.rename({'Date': 'ds', 'Close': 'y'}, axis='columns')
