@@ -112,7 +112,7 @@ def main():
         #predict('TAEE4.SA') 
         st.markdown("### Choose a ticker")
         option = st.selectbox('Ticker',get_ticker(), label_visibility = 'hidden')
-        #st.write('You selected:', option)
+        st.write('You selected:', option)
         if st.button("Predicting next 365 DAYS"):
             try:
                #symbol, description,forecast,model = predict(option)
