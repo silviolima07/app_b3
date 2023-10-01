@@ -60,7 +60,7 @@ def predict(ticker):
     hist.reset_index(inplace=True)
     hist = hist.rename({'Date': 'ds', 'Close': 'y'}, axis='columns')
     hist['ds'] = hist['ds'].dt.tz_localize(None)
-    #st.write(hist)
+    st.write(hist)
     #m = Prophet(daily_seasonality=True)
     m = Prophet()
     m.fit(hist)
