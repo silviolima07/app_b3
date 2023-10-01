@@ -88,7 +88,41 @@ def save_plot(symbol, description,forecast,m):
     fig2.savefig("prophetplot2.png")
     st.image('prophetplot2.png')
 
-
+def predict2(ticker):
+    #st.write('Funcao  predict')
+    yf = yfin.Ticker(ticker)
+    #st.write(yf.info['longName'])
+    symbol =  yf.info['symbol']
+    description = yf.info['longName']
+    #print("predict->Stock: ", symbol)
+    #print("predict->Name: " , description)
+    hist = yf.history(period="max")
+    
+    hist = hist[['Close']]
+    hist.reset_index(inplace=True)
+    hist = hist.rename({'Date': 'ds', 'Close': 'y'}, axis='columns')
+    hist['ds'] = hist['ds'].dt.tz_localize(None)
+    #st.write(hist)
+    #m = Prophet(daily_seasonality=True)
+    m = Prophet()
+    m.fit(hist)
+    #st.write("Model Prophet")
+    #st.write(m)
+    
+    future = m.make_future_dataframe(periods=365)
+    
+    forecast = m.predict(future)
+    #st.write(forecast)
+    first_date = str(hist.ds.min()).split(' ')[0]
+    last_date =  str(hist.ds.max()).split(' ')[0]
+    st.write("Period collected : "+first_date, " / "+last_date)
+    
+    #st.write("Model Prophet")
+    #st.write(m)
+    
+    #st.write("Doing Forecast")
+    #st.write(forecast)
+    return (symbol, description, forecast,m) 
   
 def main():
  
@@ -115,7 +149,7 @@ def main():
         st.write('You selected:', option)
         if st.button("Predicting next 365 DAYS"):
             try:
-               #symbol, description,forecast,model = predict(option)
+               #symbol, description,forecast,model = predict2(option)
                #save_plot(symbol, description,forecast,model)
                with st.spinner('Wait for it...we are collecting data'):
                    
