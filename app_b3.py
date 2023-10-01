@@ -98,7 +98,7 @@ def predict2(ticker):
     #print("predict->Stock: ", symbol)
     #print("predict->Name: " , description)
     hist = yf.history(period="max")
-    
+    """
     hist = hist[['Close']]
     hist.reset_index(inplace=True)
     hist = hist.rename({'Date': 'ds', 'Close': 'y'}, axis='columns')
@@ -124,7 +124,7 @@ def predict2(ticker):
     #st.write("Doing Forecast")
     #st.write(forecast)
     return (symbol, description, forecast,m) 
-  
+    """
 def main():
  
  
