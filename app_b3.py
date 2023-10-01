@@ -48,7 +48,7 @@ def get_ticker():
     return lista_tickers
  
 def predict(ticker):
-    ticker='rail3'
+   
     yf = yfin.Ticker(ticker)
     st.write(yf.info['longName'])
     symbol =  yf.info['symbol']
@@ -90,9 +90,10 @@ def save_plot(symbol, description,forecast,m):
     st.image('prophetplot2.png')
 
 def predict2(ticker):
+     ticker='rail3'
     st.write('Funcao  predict2')
     yf = yfin.Ticker(ticker)
-    st.write(yf)
+    st.write(yf.info)
     """
     #st.write(yf.info['longName'])
     symbol =  yf.info['symbol']
