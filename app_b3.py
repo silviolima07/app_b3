@@ -91,7 +91,7 @@ def save_plot(symbol, description,forecast,m):
 def predict2(ticker):
     st.write('Funcao  predict')
     yf = yfin.Ticker(ticker)
-    st.write(yf)
+    st.write(yf.info())
     st.write(yf.info['longName'])
     symbol =  yf.info['symbol']
     description = yf.info['longName']
