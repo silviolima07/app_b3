@@ -136,6 +136,10 @@ def predict3(ticker):
   yf = yfin.Ticker(ticker)
   st.write(yf)
   hist = yf.history(period="max")
+  hist = hist[['Close']]
+  hist.reset_index(inplace=True)
+  hist = hist.rename({'Date': 'ds', 'Close': 'y'}, axis='columns')
+  hist['ds'] = hist['ds'].dt.tz_localize(None)  
   st.write(hist)
     
 def main():
