@@ -135,6 +135,7 @@ def predict3(ticker):
   st.write("Ticker:"+ ticker)
   yf = yfin.Ticker(ticker)
   st.write(yf.info['symbol'])
+  """  
   hist = yf.history(period="max")
   hist = hist[['Close']]
   hist.reset_index(inplace=True)
@@ -146,7 +147,7 @@ def predict3(ticker):
   forecast = m.predict(future)
 
   return (forecast,m)
-    
+  """ 
 def main():
  
  
