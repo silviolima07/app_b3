@@ -135,7 +135,9 @@ def predict3(ticker):
   st.write("Ticker:"+ ticker)
   yf = yfin.Ticker(ticker)
   st.write(yf)
-  
+  hist = yf.history(period="max")
+  st.write(hist)
+    
 def main():
  
  
