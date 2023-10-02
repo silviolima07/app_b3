@@ -131,7 +131,8 @@ def predict2(ticker):
 
 
 def predict3(ticker):
-  print("Ticker:", ticker)
+  st.write("Predict3")
+  st.write("Ticker:"+ ticker)
   yf = yfin.Ticker(ticker)
   print("Stock: ", yf.info['symbol'])
   hist = yf.history(period="max")
