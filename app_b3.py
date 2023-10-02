@@ -128,6 +128,24 @@ def predict2(ticker):
     #st.write(forecast)
     return (symbol, description, forecast,m) 
     """
+
+
+def predict3(ticker):
+  print("Ticker:", ticker)
+  yf = yfin.Ticker(ticker)
+  print("Stock: ", yf.info['symbol'])
+  hist = yf.history(period="max")
+  hist = hist[['Close']]
+  hist.reset_index(inplace=True)
+  hist = hist.rename({'Date': 'ds', 'Close': 'y'}, axis='columns')
+  hist['ds'] = hist['ds'].dt.tz_localize(None)
+  m = Prophet(daily_seasonality=True)
+  m.fit(hist)
+  future = m.make_future_dataframe(periods=365)
+  forecast = m.predict(future)
+
+  return (forecast,m)
+    
 def main():
  
  
@@ -157,7 +175,7 @@ def main():
                #save_plot(symbol, description,forecast,model)
                with st.spinner('Wait for it...we are collecting data'):
                    
-                   symbol, description,forecast,model = predict2(option)
+                   symbol, description,forecast,model = predict3(option)
                    #save_plot(symbol, description,forecast,model)
             except:
                st.write("Error Ticker: "+option)
