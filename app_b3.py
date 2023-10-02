@@ -132,7 +132,8 @@ def predict2(ticker):
 
 def predict3(ticker):
   st.write("Predict3")
-  st.write("Ticker:"+ ticker)
+  st.write("Ticker")
+  st.write(ticker)
   yf = yfin.Ticker(ticker)
   symbol =  yf.info['symbol']  
   st.write(symbol)
