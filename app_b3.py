@@ -134,14 +134,19 @@ def predict3(ticker):
   st.write("Predict3")
   st.write("Ticker:"+ ticker)
   yf = yfin.Ticker(ticker)
-  st.write(yf)
+  symbol =  yf.info['symbol']  
+  st.write(symbol)
   hist = yf.history(period="max")
   hist = hist[['Close']]
   hist.reset_index(inplace=True)
   hist = hist.rename({'Date': 'ds', 'Close': 'y'}, axis='columns')
   hist['ds'] = hist['ds'].dt.tz_localize(None)  
-  st.write(hist)
-    
+  m = Prophet(daily_seasonality=True)
+  m.fit(hist)
+  future = m.make_future_dataframe(periods=365)
+  forecast = m.predict(future)
+  return (forecast,m)
+           
 def main():
  
  
