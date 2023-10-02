@@ -134,7 +134,7 @@ def predict3(ticker):
   st.write("Predict3")
   st.write("Ticker:"+ ticker)
   yf = yfin.Ticker(ticker)
-  print("Stock: ", yf.info['symbol'])
+  st.write(yf.info['symbol'])
   hist = yf.history(period="max")
   hist = hist[['Close']]
   hist.reset_index(inplace=True)
