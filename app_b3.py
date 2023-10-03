@@ -94,7 +94,7 @@ def save_plot2(ticker, forecast,m):
     #print("Predictions\n\ty(future value)\tTrend\tWeakly\tYearly\tDaily")
     fig1 = m.plot(forecast)
     fig1.savefig('prophetplot1.png')
-    st.markdown('### Stock" -> "+ticker)
+    st.markdown("### Stock ->" +ticker)
     st.markdown("### Prediction values for next 365 days")
     st.image('prophetplot1.png')
     #
