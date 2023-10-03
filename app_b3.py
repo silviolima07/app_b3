@@ -134,7 +134,7 @@ def predict2(ticker):
     #st.write(forecast)
     first_date = str(hist.ds.min()).split(' ')[0]
     last_date =  str(hist.ds.max()).split(' ')[0]
-    st.write("Period collected : "+first_date, " / "+last_date)
+    st.write("Period collected : "+first_date + " / " + last_date)
     
     #st.write("Model Prophet")
     #st.write(m)
