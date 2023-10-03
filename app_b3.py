@@ -165,7 +165,8 @@ def predict3(ticker):
 
   first_date = str(hist.ds.min()).split(' ')[0]
   last_date =  str(hist.ds.max()).split(' ')[0]
-  st.write("Period collected : "+first_date, " / "+last_date)
+  periodo = "Period collected : "+first_date, " / "+last_date"  
+  st.markdown("###"+periodo)
 
   return (forecast,m)
            
@@ -191,7 +192,7 @@ def main():
         #predict('TAEE4.SA') 
         st.markdown("### Choose a ticker")
         option = st.selectbox('Ticker',get_ticker(), label_visibility = 'hidden')
-        st.write('You selected:', option)
+        #st.write('You selected:', option)
         if st.button("Predicting next 365 DAYS"):
             try:
                #symbol, description,forecast,model = predict2(option)
