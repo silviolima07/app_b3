@@ -89,12 +89,12 @@ def save_plot(symbol, description,forecast,m):
     fig2.savefig("prophetplot2.png")
     st.image('prophetplot2.png')
 
-def save_plot2(forecast,m):
+def save_plot2(ticker, forecast,m):
     #print(symbol)
     #print("Predictions\n\ty(future value)\tTrend\tWeakly\tYearly\tDaily")
     fig1 = m.plot(forecast)
     fig1.savefig('prophetplot1.png')
-    #st.markdown('### '+symbol+" -> "+description)
+    st.markdown('### Stock" -> "+ticker)
     st.markdown("### Prediction values for next 365 days")
     st.image('prophetplot1.png')
     #
@@ -206,7 +206,7 @@ def main():
                    #symbol, description,forecast,model = predict3(option)
                    forecast,model = predict3(option)
                    #save_plot(symbol, description,forecast,model)
-                   save_plot2(forecast,model)
+                   save_plot2(option, forecast,model)
             except:
                st.write("Error Ticker: "+option)
                st.error('THIS TICKER WAS LIKELY RENAMED.', icon="🚨")
