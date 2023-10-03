@@ -179,6 +179,7 @@ def main():
                with st.spinner('Wait for it...we are collecting data'):
                    
                    symbol, description,forecast,model = predict3(option)
+                   forecast,model = predict3(option)
                    #save_plot(symbol, description,forecast,model)
             except:
                st.write("Error Ticker: "+option)
