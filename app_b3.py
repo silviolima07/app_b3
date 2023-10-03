@@ -165,8 +165,11 @@ def predict3(ticker):
 
   first_date = str(hist.ds.min()).split(' ')[0]
   last_date =  str(hist.ds.max()).split(' ')[0]
-  periodo = "Period collected : "+first_date, " / "+last_date"  
-  st.markdown("###"+periodo)
+  #periodo = "Period collected : "+first_date, " / "+last_date"  
+  st.markdown("### Period collected:")
+  st.write(first_date)
+  st.write(last_date)
+    
 
     
   return (forecast,m)
