@@ -146,9 +146,9 @@ def predict2(ticker):
 
 
 def predict3(ticker):
-  st.write("Predict3")
-  st.write("Ticker")
-  st.write(ticker)
+  #st.write("Predict3")
+  #st.write("Ticker")
+  #st.write(ticker)
   yf = yfin.Ticker(ticker)
   #st.write("Symbol")
   #symbol =  yf.info
@@ -162,6 +162,13 @@ def predict3(ticker):
   m.fit(hist)
   future = m.make_future_dataframe(periods=365)
   forecast = m.predict(future)
+
+  first_date = str(hist.ds.min()).split(' ')[0]
+  last_date =  str(hist.ds.max()).split(' ')[0]
+  st.write("Period collected : "+first_date, " / "+last_date)
+  st.write("forecast")
+  st.write(forecast)
+  st.write(m)  
   return (forecast,m)
            
 def main():
