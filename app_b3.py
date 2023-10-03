@@ -168,6 +168,7 @@ def predict3(ticker):
   periodo = "Period collected : "+first_date, " / "+last_date"  
   st.markdown("###"+periodo)
 
+    
   return (forecast,m)
            
 def main():
