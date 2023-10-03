@@ -89,6 +89,21 @@ def save_plot(symbol, description,forecast,m):
     fig2.savefig("prophetplot2.png")
     st.image('prophetplot2.png')
 
+def save_plot2(forecast,m):
+    #print(symbol)
+    #print("Predictions\n\ty(future value)\tTrend\tWeakly\tYearly\tDaily")
+    fig1 = m.plot(forecast)
+    fig1.savefig('prophetplot1.png')
+    #st.markdown('### '+symbol+" -> "+description)
+    st.markdown("### Prediction values for next 365 days")
+    st.image('prophetplot1.png')
+    #
+    st.markdown("### Components: Trend Weekly Yearly Daily")
+    fig2 =  m.plot_components(forecast)
+    fig2.savefig("prophetplot2.png")
+    st.image('prophetplot2.png')
+
+
 def predict2(ticker):
     ticker='rail3.sa'
     st.write('Funcao  predict2')
@@ -181,6 +196,7 @@ def main():
                    #symbol, description,forecast,model = predict3(option)
                    forecast,model = predict3(option)
                    #save_plot(symbol, description,forecast,model)
+                   save_plot2(forecast,model)
             except:
                st.write("Error Ticker: "+option)
                st.error('THIS TICKER WAS LIKELY RENAMED.', icon="🚨")
