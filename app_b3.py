@@ -23,7 +23,7 @@ from PIL import Image
 import pandas as pd
 import investpy as inv
 import yfinance as yfin
-yfin.pdr_override()
+#yfin.pdr_override()
 import numpy as np
 from matplotlib import pyplot as plt
 
