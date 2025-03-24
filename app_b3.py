@@ -40,16 +40,26 @@ from bokeh.models.widgets import Div
 import os
 os.environ['TZ'] = 'America/Sao_Paulo'
 #
+@st.cache_data(ttl=3600)  # Cache for 1 hour
+def get_cached_tickers():
+    return get_ticker()
 
-
-def get_ticker():
+def get_ticker2():
     br = inv.stocks.get_stocks(country='brazil')
     lista_tickers = []
     sufixo = '.SA'
     for i in [ticker for ticker in br.symbol]:
       lista_tickers.append(i+sufixo)
     return lista_tickers
- 
+    
+def get_ticker():
+    try:
+        br = inv.stocks.get_stocks(country='brazil')
+        lista_tickers = [f"{ticker}.SA" for ticker in br.symbol]
+        return lista_tickers
+    except:
+        # Fallback list if investpy fails
+        return ['PETR4.SA', 'VALE3.SA', 'ITUB4.SA', 'BBDC4.SA', 'ABEV3.SA'] 
 def predict(ticker):
    
     yf = yfin.Ticker(ticker)
@@ -149,7 +159,32 @@ def predict2(ticker):
     #st.write(forecast)
     return (symbol, description, forecast,m) 
     """
+def validate_ticker(ticker):
+    try:
+        yf = yfin.Ticker(ticker)
+        if not yf.info:
+            return False
+        hist = yf.history(period="1mo")
+        return not hist.empty
+    except:
+        return False
 
+def save_plot2(ticker, forecast, m):
+    if forecast is None or m is None:
+        st.error("No forecast data available")
+        return
+        
+    try:
+        fig1 = m.plot(forecast)
+        st.markdown(f"### Stock -> {ticker}")
+        st.markdown("### Prediction values for next 365 days")
+        st.pyplot(fig1)
+        
+        fig2 = m.plot_components(forecast)
+        st.markdown("### Components: Trend Weekly Yearly Daily")
+        st.pyplot(fig2)
+    except Exception as e:
+        st.error(f"Error generating plots: {str(e)}")
 
 def predict3(ticker):
   #st.write("Predict3")
