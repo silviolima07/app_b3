@@ -126,7 +126,8 @@ def main():
     """, unsafe_allow_html=True)
     
     # Sidebar
-    st.sidebar.image(Image.open("Logo_B3.png"), caption="", use_container_width=True)
+    logo = Image.open('Logo_B3.png')
+    st.sidebar.image(logo, caption="", use_container_width=True)
     activities = ["Predictions", "About"]
     choice = st.sidebar.radio("Menu", activities)
     
