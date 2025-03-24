@@ -187,7 +187,7 @@ def main():
     st.markdown(html_page, unsafe_allow_html=True)
  
     image = Image.open("Logo_B3 .png")
-    st.sidebar.image(image,caption="", use_column_width=True)
+    st.sidebar.image(image,caption="", use_container_width=True)
     
     activities = ["Predictions","About"]
     choice = st.sidebar.radio("Home",activities)
