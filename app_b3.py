@@ -16,7 +16,7 @@ os.environ['TZ'] = 'America/Sao_Paulo'
 
 try:
     import yfinance as yfin
-    yfin.pdr_override()
+    #yfin.pdr_override()
 except ImportError:
     st.error("Please install yfinance: pip install yfinance")
 
