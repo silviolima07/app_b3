@@ -23,7 +23,7 @@ from PIL import Image
 import pandas as pd
 import investpy as inv
 import yfinance as yfin
-#yfin.pdr_override()
+yfin.pdr_override()
 import numpy as np
 from matplotlib import pyplot as plt
 
@@ -36,6 +36,9 @@ from prophet import Prophet
 
 from bokeh.models.widgets import Div
 
+# Set default timezone
+import os
+os.environ['TZ'] = 'America/Sao_Paulo'
 #
 
 
@@ -60,7 +63,10 @@ def predict(ticker):
     hist = hist[['Close']]
     hist.reset_index(inplace=True)
     hist = hist.rename({'Date': 'ds', 'Close': 'y'}, axis='columns')
-    hist['ds'] = hist['ds'].dt.tz_localize(None)
+    #hist['ds'] = hist['ds'].dt.tz_localize(None)
+    import pytz  # Add this to your imports
+    # Modify your predict functions to include:
+    hist['ds'] = hist['ds'].dt.tz_localize('America/Sao_Paulo').dt.tz_localize(None)
     #st.write(hist)
     #m = Prophet(daily_seasonality=True)
     m = Prophet()
