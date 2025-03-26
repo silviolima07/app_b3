@@ -26,11 +26,11 @@ except ImportError:
     st.error("Please install investpy: pip install investpy")
 
 # Cached functions
-@st.cache_data(ttl=3600)
+#@st.cache_data(ttl=3600)
 def get_cached_tickers():
     return get_ticker()
 
-@st.cache_data(ttl=3600)
+#@st.cache_data(ttl=3600)
 def get_ticker():
     """Get list of Brazilian stock tickers"""
     try:
